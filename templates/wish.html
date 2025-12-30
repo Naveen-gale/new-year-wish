@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/wish.css') }}">
+</head>
+<body>
+
+    <div class="pyro">
+        <div class="before"></div>
+        <div class="after"></div>
+    </div>
+
+    <div class="snow-container">
+        <div class="snow snow-far"></div>
+        <div class="snow snow-mid"></div>
+        <div class="snow snow-near"></div>
+    </div>
+
+    <div class="wish-container">
+        
+        <div class="text-header">
+            <p class="sub-text">Wishing a Magical 2026 to</p>
+            <h1 class="name-text">{{ name }}</h1>
+        </div>
+
+        <div class="photo-card">
+            <div class="shine"></div>
+            <img src="{{ url_for('static', filename='images/' + photo) }}" alt="New Year Photo">
+        </div>
+
+        <div class="action-area">
+            <a href="/gallery" class="btn">View All Memories ➜</a>
+        </div>
+
+    </div>
+
+    <audio id="bgMusic" autoplay loop>
+        <source src="{{ url_for('static', filename='music/song.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.body.addEventListener('click', function() {
+            document.getElementById('bgMusic').play();
+        }, { once: true });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+/* --- Base Settings --- */
+body {
+    margin: 0;
+    height: 100vh;
+    min-height: 100vh; /* Ensures it works on mobile browsers with address bars */
+    /* Deep Night Sky Gradient */
+    background: radial-gradient(circle at center, #1a0b2e 0%, #000000 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Cinzel', serif;
+    color: white;
+    overflow: hidden; /* Prevents scrollbars from animations */
+}
+
+/* --- Container --- */
+.wish-container {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    /* Flexbox to center everything vertically and horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* Safe space for mobile edges */
+    box-sizing: border-box;
+}
+
+/* --- 1. TYPOGRAPHY (Responsive) --- */
+.text-header {
+    width: 100%;
+    max-width: 600px;
+}
+
+.sub-text {
+    /* Fonts scale based on screen width */
+    font-size: clamp(0.8rem, 3vw, 1.1rem); 
+    color: #ddd;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: -10px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+}
+
+.name-text {
+    font-family: 'Great Vibes', cursive;
+    /* This is the magic line: Text scales from 3rem (mobile) to 5rem (PC) automatically */
+    font-size: clamp(3.5rem, 10vw, 5.5rem); 
+    margin: 10px 0 25px 0;
+    line-height: 1.2;
+    
+    /* Liquid Gold Gradient */
+    background: linear-gradient(to bottom, #cfc09f 22%, #634f2c 24%, #cfc09f 26%, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
+    
+    /* Glow */
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+    animation: pulseText 3s infinite alternate;
+}
+
+/* --- 2. THE RESPONSIVE PHOTO CARD --- */
+.photo-card {
+    position: relative;
+    
+    /* RESPONSIVE SIZE SETTINGS */
+    width: 80vw; /* Takes up 80% of phone screen width */
+    max-width: 380px; /* Stops growing at 380px on PC */
+    aspect-ratio: 1 / 1; /* Forces it to stay a perfect Square */
+    height: auto; /* Let aspect-ratio handle the height */
+    
+    background: #000;
+    
+    /* The Gold Border Frame */
+    border: 4px solid #FFD700;
+    border-radius: 20px;
+    padding: 8px;
+    
+    /* 3D Shadows */
+    box-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.5), 
+        0 20px 50px rgba(0, 0, 0, 0.9);
+
+    /* Entrance Animation */
+    animation: zoomIn 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    transform: scale(0); /* Start hidden */
+    will-change: transform; /* smooths animation on mobile phones */
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}
+
+/* Glass Shine Effect */
+.shine {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%, transparent 100%);
+    pointer-events: none;
+    border-radius: 20px;
+    z-index: 2;
+}
+
+/* --- 3. BUTTON --- */
+.action-area { 
+    margin-top: 30px; 
+    width: 100%;
+}
+
+.btn {
+    text-decoration: none;
+    color: #000;
+    background: linear-gradient(90deg, #FFD700, #FDB931);
+    
+    /* Responsive Padding */
+    padding: 12px 40px; 
+    white-space: nowrap; /* Prevents text breaking on tiny phones */
+    
+    border-radius: 50px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    transition: 0.3s;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+.btn:hover {
+    transform: scale(1.1);
+    background: white;
+    box-shadow: 0 0 40px white;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes zoomIn {
+    0% { transform: scale(0) translateY(50px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes pulseText {
+    0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6)); }
+    100% { transform: scale(1.05); filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9)); }
+}
+
+/* --- 4. BACKGROUND EFFECTS --- */
+
+/* Snow Container */
+.snow-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+
+.snow {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background-image: radial-gradient(3px 3px at 100px 50px, #fff, transparent), radial-gradient(5px 5px at 200px 150px, #fff, transparent), radial-gradient(4px 4px at 300px 250px, #fff, transparent);
+  background-size: 550px 550px;
+  animation: snowFall linear infinite;
+}
+.snow-far { animation-duration: 15s; opacity: 0.5; transform: scale(0.8); }
+.snow-mid { animation-duration: 10s; opacity: 0.8; }
+.snow-near { animation-duration: 6s; opacity: 1; transform: scale(1.5); filter: blur(1px); }
+
+@keyframes snowFall { 
+    0% { background-position: 0 0; } 
+    100% { background-position: 0 550px; } 
+}
+
+/* Fireworks */
+.pyro { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+.pyro > .before, .pyro > .after {
+    position: absolute; width: 6px; height: 6px; border-radius: 50%;
+    box-shadow: -120px -218.66667px blue, 248px -16.66667px gold, 190px 16.66667px red, -113px -308.66667px pink, -109px -287.66667px cyan, -50px -313.66667px white, 226px -31.66667px violet;
+    animation: bang 1s infinite ease-out, gravity 1s infinite ease-in, position 1s infinite linear;
+}
+.pyro > .after { animation-delay: 1.25s; animation-duration: 1.25s; }
+
+@keyframes bang { to { box-shadow: -120px -218.66667px transparent, 248px -16.66667px transparent, 190px 16.66667px transparent, -113px -308.66667px transparent, -109px -287.66667px transparent, -50px -313.66667px transparent, 226px -31.66667px transparent; } }
+@keyframes gravity { to { transform: translateY(200px); opacity: 0; } }
+@keyframes position {
+  0%, 19.9% { margin-top: 10%; margin-left: 40%; }
+  20%, 39.9% { margin-top: 40%; margin-left: 30%; }
+  40%, 59.9% { margin-top: 20%; margin-left: 70%; }
+  60%, 79.9% { margin-top: 30%; margin-left: 20%; }
+  80%, 99.9% { margin-top: 30%; margin-left: 80%; }
+}
+
+/* --- Mobile Specific Tweaks (For very small screens) --- */
+@media (max-width: 400px) {
+    .photo-card {
+        border-width: 2px; /* Thinner border on tiny screens */
+    }
+    .btn {
+        padding: 10px 30px;
+        font-size: 0.8rem;
+    }
+}

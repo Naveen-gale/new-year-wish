@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  height: 100vh;
+  /* Deep dark radial gradient for a premium night-sky look */
+  background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-family: 'Cinzel', serif; /* Classy font */
+  overflow: hidden;
+}
+
+.center {
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  /* Subtle text shadow for depth */
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* Special styling for "2026" */
+.year {
+  color: #FFD700; /* Gold */
+  font-size: 3.5rem;
+  display: block;
+  margin-top: 10px;
+  /* Glowing Neon Effect */
+  text-shadow: 
+    0 0 10px #FFD700,
+    0 0 20px #FFD700,
+    0 0 40px #FF8C00;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* Container to hold the two spinners */
+.loader-container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px auto;
+}
+
+/* Outer Ring */
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 4px solid transparent;
+  border-top: 4px solid #FFD700; /* Gold */
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); /* Gold Glow */
+}
+
+/* Inner Ring (Spins opposite direction) */
+.loader-inner {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 50px;
+  height: 50px;
+  border: 4px solid transparent;
+  border-bottom: 4px solid #fff; /* White/Silver */
+  border-radius: 50%;
+  animation: spin-reverse 1s linear infinite;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* White Glow */
+}
+
+.status-text {
+  color: #aaa;
+  font-size: 0.9rem;
+  font-family: Arial, sans-serif;
+  letter-spacing: 1px;
+  animation: fade 2s infinite;
+}
+
+/* Animations */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes spin-reverse {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+@keyframes fade {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tree of Memories</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
+</head>
+<body>
+
+  <div id="modal" class="modal">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      
+      <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+      <a class="next" onclick="changeSlide(1)">&#10095;</a>
+
+      <div class="modal-content">
+          <img id="full-image" src="" alt="">
+          <div id="caption"></div>
+      </div>
+  </div>
+
+  <div class="page-content">
+      <h1>🎄 Our Memories 🎄</h1>
+      
+      <div class="clike">
+        <p>Tap the photos to view</p>
+      </div>
+
+      <div class="tree-container">
+        <div class="star">★</div>
+        
+        <div class="tree-grid">
+          {% for name, photo in friends.items() %}
+            <div class="hanger" onclick="openModal('{{ loop.index0 }}')">
+               <div class="string"></div>
+               <div class="ornament">
+                 <img src="{{ url_for('static', filename='images/' + photo) }}" 
+                      data-index="{{ loop.index0 }}"
+                      data-name="{{ name }}"
+                      alt="{{ name }}">
+               </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+  </div>
+
+  <div class="snow-container">
+      <div class="snow snow-far"></div>
+      <div class="snow snow-mid"></div>
+      <div class="snow snow-near"></div>
+  </div>
+
+  <audio id="galleryMusic" autoplay loop>
+      <source src="{{ url_for('static', filename='music/song2.mp3') }}" type="audio/mpeg">
+  </audio>
+
+  <script>
+      // 1. Load Friend Data
+      const friendsData = [
+          {% for name, photo in friends.items() %}
+            { src: "{{ url_for('static', filename='images/' + photo) }}", name: "{{ name.capitalize() }}" },
+          {% endfor %}
+      ];
+
+      // 2. Music Autoplay Fix
+      // If browser blocks autoplay, this starts music when user clicks ANYWHERE
+      document.addEventListener('click', function() {
+          var audio = document.getElementById("galleryMusic");
+          if (audio.paused) {
+              audio.play();
+          }
+      }, { once: false }); // Checks on every click just to be safe
+  </script>
+
+  <script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading 2026...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loading.css') }}">
+</head>
+<body>
+
+    <div class="center">
+        <h1>Loading New Year <span class="year">2026</span></h1>
+        
+        <div class="loader-container">
+            <div class="loader"></div>
+            <div class="loader-inner"></div>
+        </div>
+        
+        <p class="status-text">Getting the party started...</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/loading.js') }}"></script>
+</body>
+</html>
